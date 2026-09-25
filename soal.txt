@@ -1,0 +1,43 @@
+TP Overview
+Silahkan kembangkan tema dari TP1 (ato mo bikin baru pun silahkan) 
+menjadi 3 class (per class min 3 atribut) menggunakan konsep OOP 
+Multilevel Inheritance (dikembangkannya harus make sense dengan 
+objek yang ada di dunia nyata). Program harus dibuat dalam empat 
+bahasa pemrograman (Java, PHP, Python, dan CPP).
+
+TP Requirements
+    - Bisa menerima input dari user untuk menambahkan data. (Add Saja)
+    - Wajib terdapat 5 objek awal pada main (sebelum ada input user)
+    - Tampilan seluruh data dari setiap class DI DALAM SATU TABEL secara 
+      LENGKAP (tabelnya dinamis, caranya bebas explore aja setiap bahasa)
+    - Sertakan file.txt yang berisi input testcase untuk setiap bahasa 
+      (taro di directory bahasanya)
+
+Notes
+    - Atribut foto_produk KHUSUS BAHASA PHP
+    - File object seperti .o pada cpp dan .class pada java tidak usah di upload
+    - Sertakan "design diagram" yang merepresentasikan hubungan/relasi antar class
+    - README.md berisi: janji, penjelasan atribut dan methods, diagram, 
+      penjelasan alur program, dan dokumentasi (boleh screen record atau ss). 
+      Harus lengkap ga lengkap pengurangan nilai.
+    - CPP, Java, Python wajib dapat menerima inputan user, khusus PHP boleh 
+      hardcode atau jika mau interaktif menerima actions pada website juga 
+      boleh kalau mau (gak ada bonus)
+
+Struktur Repo
+Folder CPP
+    Kode Program
+Folder Python
+    Kode Program
+Folder Java
+    Kode Java
+Folder PHP
+    Kode (dan file2 lain)
+Folder Dokumentasi
+    Screenrecord/Screenshoot
+Readme.md
+
+Teknis Pengumpulan
+Tugas dikumpulkan melalui link repository GitHub dengan format nama repo "TP2DPBO2526C(kelas)" lalu disubmit ke form, pastikan Repo sudah di-set ke Public, kalo ga public ga bisa di koreksi.
+Jangan Ubah/Update Repo Branch "MAIN" Setelah Deadline, nanti dicek tanggalnya.
+Deadline TP2 pada tanggal 26 September 2026
