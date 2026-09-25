@@ -1,45 +1,50 @@
 // Base Class: Media
-// Merepresentasikan data umum karya media
+// Merepresentasikan data umum karya media digital
 public class Media {
-    protected String id;
+    protected String idMedia;
     protected String judul;
     protected int tahunRilis;
 
     // Constructor default
     public Media() {
-        this.id = "";
+        this.idMedia = "";
         this.judul = "";
         this.tahunRilis = 0;
     }
 
     // Constructor dengan parameter
-    public Media(String id, String judul, int tahunRilis) {
-        this.id = id;
+    public Media(String idMedia, String judul, int tahunRilis) {
+        this.idMedia = idMedia;
         this.judul = judul;
         this.tahunRilis = tahunRilis;
     }
 
-    // Getter & Setter untuk ID
-    public String getId() {
-        return id;
-    }
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    // Getter & Setter untuk Judul
-    public String getJudul() {
-        return judul;
+    // Setter
+    public void setIdMedia(String idMedia) {
+        this.idMedia = idMedia;
     }
     public void setJudul(String judul) {
         this.judul = judul;
     }
+    public void setTahunRilis(int tahunRilis) {
+        this.tahunRilis = tahunRilis;
+    }
 
-    // Getter & Setter untuk Tahun Rilis
+    // Getter
+    public String getIdMedia() {
+        return idMedia;
+    }
+    public String getJudul() {
+        return judul;
+    }
     public int getTahunRilis() {
         return tahunRilis;
     }
-    public void setTahunRilis(int tahunRilis) {
-        this.tahunRilis = tahunRilis;
+
+    // Prosedur menampilkan data
+    public void tampilkanData() {
+        System.out.println("ID Media    : " + getIdMedia());
+        System.out.println("Judul       : " + getJudul());
+        System.out.println("Tahun Rilis : " + getTahunRilis());
     }
 }

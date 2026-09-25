@@ -1,17 +1,16 @@
 <?php
-require_once "Film.php";
+require_once 'Film.php';
 
-// Subclass Level 2 (Multilevel Inheritance): FilmBioskop
-// Mewarisi Film (yang mewarisi Media)
-// Menambahkan atribut spesifik penayangan bioskop + atribut foto_produk khusus PHP
+// Subclass Level 2 (Multilevel Inheritance): FilmBioskop (mewarisi Film)
+// Menambahkan atribut spesifik penayangan bioskop + atribut gambar/foto_produk khusus PHP
 class FilmBioskop extends Film {
     private string $studioProduksi;
     private string $ratingUsia;
-    private int $hargaTiket;
-    private string $fotoProduk; // Khusus bahasa PHP (path file poster)
+    private float $hargaTiket;
+    private string $gambar; // Khusus bahasa PHP (path file poster film)
 
     public function __construct(
-        string $id = "",
+        string $idMedia = "",
         string $judul = "",
         int $tahunRilis = 0,
         string $sutradara = "",
@@ -19,46 +18,51 @@ class FilmBioskop extends Film {
         int $durasi = 0,
         string $studioProduksi = "",
         string $ratingUsia = "",
-        int $hargaTiket = 0,
-        string $fotoProduk = ""
+        float $hargaTiket = 0.0,
+        string $gambar = ""
     ) {
-        parent::__construct($id, $judul, $tahunRilis, $sutradara, $genre, $durasi);
+        parent::__construct($idMedia, $judul, $tahunRilis, $sutradara, $genre, $durasi);
         $this->studioProduksi = $studioProduksi;
         $this->ratingUsia = $ratingUsia;
         $this->hargaTiket = $hargaTiket;
-        $this->fotoProduk = $fotoProduk;
+        $this->gambar = $gambar;
     }
 
-    // Getter & Setter Studio Produksi
+    // Setter
+    public function setStudioProduksi(string $studio): void {
+        $this->studioProduksi = $studio;
+    }
+    public function setRatingUsia(string $rating): void {
+        $this->ratingUsia = $rating;
+    }
+    public function setHargaTiket(float $harga): void {
+        $this->hargaTiket = $harga;
+    }
+    public function setGambar(string $gambar): void {
+        $this->gambar = $gambar;
+    }
+
+    // Getter
     public function getStudioProduksi(): string {
         return $this->studioProduksi;
     }
-    public function setStudioProduksi(string $studioProduksi): void {
-        $this->studioProduksi = $studioProduksi;
-    }
-
-    // Getter & Setter Rating Usia
     public function getRatingUsia(): string {
         return $this->ratingUsia;
     }
-    public function setRatingUsia(string $ratingUsia): void {
-        $this->ratingUsia = $ratingUsia;
-    }
-
-    // Getter & Setter Harga Tiket
-    public function getHargaTiket(): int {
+    public function getHargaTiket(): float {
         return $this->hargaTiket;
     }
-    public function setHargaTiket(int $hargaTiket): void {
-        $this->hargaTiket = $hargaTiket;
+    public function getGambar(): string {
+        return $this->gambar;
     }
 
-    // Getter & Setter Foto Produk (Khusus PHP)
-    public function getFotoProduk(): string {
-        return $this->fotoProduk;
-    }
-    public function setFotoProduk(string $fotoProduk): void {
-        $this->fotoProduk = $fotoProduk;
+    // Prosedur menampilkan data
+    public function tampilkanData(): void {
+        parent::tampilkanData();
+        echo "Studio      : " . $this->getStudioProduksi() . "<br>";
+        echo "Rating Usia : " . $this->getRatingUsia() . "<br>";
+        echo "Harga Tiket : Rp" . number_format($this->getHargaTiket(), 0, ',', '.') . "<br>";
+        echo "Gambar      : " . $this->getGambar() . "<br>";
     }
 }
 ?>

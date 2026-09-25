@@ -2,38 +2,43 @@
 // Base Class: Media
 // Merepresentasikan data umum karya media digital
 class Media {
-    protected string $id;
+    protected string $idMedia;
     protected string $judul;
     protected int $tahunRilis;
 
-    public function __construct(string $id = "", string $judul = "", int $tahunRilis = 0) {
-        $this->id = $id;
+    public function __construct(string $idMedia = "", string $judul = "", int $tahunRilis = 0) {
+        $this->idMedia = $idMedia;
         $this->judul = $judul;
         $this->tahunRilis = $tahunRilis;
     }
 
-    // Getter & Setter ID
-    public function getId(): string {
-        return $this->id;
-    }
-    public function setId(string $id): void {
-        $this->id = $id;
-    }
-
-    // Getter & Setter Judul
-    public function getJudul(): string {
-        return $this->judul;
+    // Setter
+    public function setIdMedia(string $idMedia): void {
+        $this->idMedia = $idMedia;
     }
     public function setJudul(string $judul): void {
         $this->judul = $judul;
     }
+    public function setTahunRilis(int $tahunRilis): void {
+        $this->tahunRilis = $tahunRilis;
+    }
 
-    // Getter & Setter Tahun Rilis
+    // Getter
+    public function getIdMedia(): string {
+        return $this->idMedia;
+    }
+    public function getJudul(): string {
+        return $this->judul;
+    }
     public function getTahunRilis(): int {
         return $this->tahunRilis;
     }
-    public function setTahunRilis(int $tahunRilis): void {
-        $this->tahunRilis = $tahunRilis;
+
+    // Prosedur menampilkan data
+    public function tampilkanData(): void {
+        echo "ID Media    : " . $this->getIdMedia() . "<br>";
+        echo "Judul       : " . $this->getJudul() . "<br>";
+        echo "Tahun Rilis : " . $this->getTahunRilis() . "<br>";
     }
 }
 ?>

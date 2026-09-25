@@ -1,67 +1,43 @@
-# Janji
-Saya Luthfi Naufal Alfareza dengan NIM 2511437 mengerjakan Tugas Praktikum 2 pada Mata Kuliah Desain dan Pemrograman Berorientasi Objek (DPBO) untuk keberkahan-Nya maka saya tidak melakukan kecurangan seperti yang telah dispesifikasikan. Aamiin.
+# TP2DPBO2526C1
+TUGAS PRAKTIKUM 2 DPBO - MULTILEVEL INHERITANCE
+
+## ✊🏼 JANJI
+Saya Luthfi Naufal Alfareza dengan NIM 2511437 mengerjakan Tugas Praktikum 2 dalam mata kuliah Desain dan Pemrograman Berorientasi Objek (DPBO) untuk keberkahan-Nya maka saya tidak akan melakukan kecurangan seperti yang telah dispesifikasikan. Aamiin.
 
 ---
 
-# Struktur File Repository
+## 👾 DESCRIPTION
+Program ini mengimplementasikan konsep **Multilevel Inheritance (Pewarisan Bertingkat)** dalam kasus **Sistem Manajemen Film Bioskop** pada Object-Oriented Programming (OOP) yang dikembangkan dari tema TP1.
 
-```
-TP2DPBO2526C1/
-├── CPP/
-│   ├── Media.hpp
-│   ├── Film.hpp
-│   ├── FilmBioskop.hpp
-│   ├── main.cpp
-│   └── file.txt
-├── Java/
-│   ├── Media.java
-│   ├── Film.java
-│   ├── FilmBioskop.java
-│   ├── Main.java
-│   └── file.txt
-├── Python/
-│   ├── media.py
-│   ├── film.py
-│   ├── film_bioskop.py
-│   ├── main.py
-│   └── file.txt
-├── PHP/
-│   ├── Media.php
-│   ├── Film.php
-│   ├── FilmBioskop.php
-│   ├── index.php
-│   ├── file.txt
-│   └── image/
-│       ├── avengers_endgame.jpg
-│       ├── dune_part_two.jpg
-│       ├── interstellar.jpg
-│       ├── oppenheimer.jpg
-│       ├── spiderman_brand_new_day.jpg
-│       └── thor_ragnarok.jpg
-├── Dokumentasi/
-│   ├── design_diagram.png
-│   ├── cpp_output.png
-│   ├── java_output.png
-│   ├── python_output.png
-│   ├── php_awal.png
-│   ├── php_tambah.png
-│   └── php_cli_output.png
-├── soal.txt
-└── README.md
-```
+Terdapat 3 class berjenjang dengan masing-masing minimal 3 atribut:
+1. **`Media`**: Base class yang memiliki atribut paling umum dari sebuah karya media rekam.
+2. **`Film`**: Turunan dari class `Media` (Inheritance Level 1), menambahkan atribut yang spesifik dimiliki oleh karya perfilman layar lebar.
+3. **`FilmBioskop`**: Turunan dari class `Film` (Inheritance Level 2), menambahkan atribut khusus untuk penayangan dan distribusi komersial film di bioskop.
+
+Program dibuat dalam 4 bahasa pemrograman:
+- **C++**
+- **Java**
+- **Python**
+- **PHP** (dengan GUI Web berbasis Tailwind CSS + mode CLI)
+
+**Ketentuan yang dipenuhi:**
+- Memiliki 5 data objek awal default sebelum input user.
+- Menerima input user untuk menambah data baru (*Add Saja*).
+- Menampilkan seluruh data dari setiap class di dalam **SATU TABEL** secara lengkap dan dinamis.
+- Pada PHP ditambahkan atribut gambar poster (`images/`).
+- Disertakan file testcase input `file.txt` di setiap bahasa.
 
 ---
 
-# Desain & Diagram Kelas (Multilevel Inheritance)
+## ❌ Error Handling
+Pada seluruh program di keempat bahasa, diterapkan penanganan kesalahan (*error handling*) yang komprehensif:
+1. **Validasi ID Unik**: Program memeriksa apakah ID media yang diinputkan sudah terdaftar dalam sistem. Jika ID sudah ada, program menolak dan meminta pengguna memasukkan ID lain.
+2. **Validasi Angka Positif**: Nilai numerik seperti tahun rilis, durasi film (menit), dan harga tiket bioskop divalidasi harus berupa angka positif yang valid.
+3. **Input Buffer Safety**: Pada C++ dan Java, penanganan kesalahan pembacaan tipe data (non-numeric input pada integer/double) ditangani dengan pembersihan buffer (`cin.clear()`, `cin.ignore()`, `scanner.nextLine()`) untuk mencegah loop tak terbatas (*infinite loop*).
 
-Program ini merupakan pengembangan dari tema TP1 (**Film**) dengan menerapkan konsep **OOP Multilevel Inheritance (Pewarisan Bertingkat)** yang mencerminkan objek di dunia nyata.
+---
 
-Sistem terdiri dari **3 class** berjenjang dengan masing-masing minimal 3 atribut:
-1. **`Media`** (Base Class)
-2. **`Film`** (Subclass turunan dari `Media`)
-3. **`FilmBioskop`** (Subclass turunan dari `Film`)
-
-### Design Diagram (UML Class Diagram)
+## 📊 Diagram Konsep:
 
 <p align="center">
   <img src="Dokumentasi/design_diagram.png" alt="UML Class Diagram Multilevel Inheritance" width="600px">
@@ -71,15 +47,16 @@ Sistem terdiri dari **3 class** berjenjang dengan masing-masing minimal 3 atribu
 classDiagram
     direction TB
     class Media {
-        #String id
+        #String idMedia
         #String judul
         #int tahunRilis
-        +getId() String
-        +setId(id: String) void
+        +getIdMedia() String
+        +setIdMedia(idMedia: String) void
         +getJudul() String
         +setJudul(judul: String) void
         +getTahunRilis() int
         +setTahunRilis(tahunRilis: int) void
+        +tampilkanData() void
     }
 
     class Film {
@@ -92,125 +69,109 @@ classDiagram
         +setGenre(genre: String) void
         +getDurasi() int
         +setDurasi(durasi: int) void
+        +tampilkanData() void
     }
 
     class FilmBioskop {
         -String studioProduksi
         -String ratingUsia
-        -int hargaTiket
-        -String fotoProduk
+        -double hargaTiket
+        -String gambar
         +getStudioProduksi() String
         +setStudioProduksi(studio: String) void
         +getRatingUsia() String
         +setRatingUsia(rating: String) void
-        +getHargaTiket() int
-        +setHargaTiket(harga: int) void
-        +getFotoProduk() String
-        +setFotoProduk(foto: String) void
+        +getHargaTiket() double
+        +setHargaTiket(harga: double) void
+        +getGambar() String
+        +setGambar(gambar: String) void
+        +tampilkanData() void
     }
 
     Media <|-- Film : inherits (Level 1)
     Film <|-- FilmBioskop : inherits (Level 2 Multilevel)
 ```
 
----
-
-# Penjelasan Atribut dan Methods
-
-### 1. Base Class: `Media`
-Merepresentasikan entitas umum karya rekam/media digital.
-- **Atribut:**
-  - `id` (String): ID unik penanda karya media (misal: `"FB01"`).
-  - `judul` (String): Judul karya media.
-  - `tahunRilis` (int): Tahun peluncuran/rilis karya ke publik.
-- **Methods:**
-  - Constructor (default & parameterized): Menginisialisasi nilai atribut awal.
-  - Getter & Setter untuk setiap atribut (`getId`, `setId`, `getJudul`, `setJudul`, `getTahunRilis`, `setTahunRilis`).
-
-### 2. Subclass Level 1: `Film` (extends `Media`)
-Mewarisi `Media`, menambahkan detail teknis produksi perfilman.
-- **Atribut:**
-  - `sutradara` (String): Nama sutradara penanggung jawab produksi kreatif film.
-  - `genre` (String): Kategori tema film (misal: `"Action / Sci-Fi"`).
-  - `durasi` (int): Panjang durasi film dalam satuan menit.
-- **Methods:**
-  - Constructor (default & parameterized): Memanggil constructor super/parent class `Media`.
-  - Getter & Setter untuk setiap atribut (`getSutradara`, `setSutradara`, `getGenre`, `setGenre`, `getDurasi`, `setDurasi`).
-
-### 3. Subclass Level 2: `FilmBioskop` (extends `Film`)
-Mewarisi `Film` (dan secara tidak langsung mewarisi `Media`), merepresentasikan film yang didistribusikan secara komersial untuk penayangan di bioskop.
-- **Atribut:**
-  - `studioProduksi` (String): Rumah produksi atau distributor resmi (misal: `"Marvel Studios"`, `"Warner Bros"`).
-  - `ratingUsia` (String): Batasan klasifikasi usia penonton bioskop (misal: `"SU"`, `"13+"`, `"17+"`).
-  - `hargaTiket` (int): Harga rata-rata tiket penayangan reguler di bioskop dalam Rupiah.
-  - `fotoProduk` (String, **Khusus PHP**): Nama file gambar poster film yang tersimpan pada folder `image/`.
-- **Methods:**
-  - Constructor (default & parameterized): Memanggil constructor super/parent class `Film`.
-  - Getter & Setter untuk setiap atribut (`getStudioProduksi`, `setStudioProduksi`, `getRatingUsia`, `setRatingUsia`, `getHargaTiket`, `setHargaTiket`, serta `getFotoProduk` & `setFotoProduk` di PHP).
+### Alasan Pemilihan Class:
+1. **`Media`**: Merupakan entitas paling umum dalam industri hiburan rekam, mencakup ID, Judul, dan Tahun Rilis.
+2. **`Film`**: Kategori yang lebih khusus dari media, merepresentasikan karya audiovisual berdurasi waktu tertentu yang memiliki sutradara dan genre.
+3. **`FilmBioskop`**: Entitas turunan bertingkat paling spesifik yang merepresentasikan film yang ditayangkan di gedung bioskop komersial dengan studio produksi/distributor, klasifikasi rating usia penonton, harga tiket, dan poster promosi.
 
 ---
 
-# Penjelasan Alur Program
+## ☕ Class & Atribut
 
-1. **Inisialisasi 5 Objek Awal:**
-   Pada saat program pertama kali dijalankan, program langsung menginisialisasi 5 objek `FilmBioskop` di dalam list/array/vector secara otomatis (Avengers: Endgame, Interstellar, Spider-Man: No Way Home, Thor: Ragnarok, Oppenheimer).
-2. **Penampilan Tabel Awal (Tabel Dinamis):**
-   Program menampilkan ke-5 objek awal di dalam **satu tabel lengkap** yang memuat seluruh atribut dari ketiga level class (ID, Judul, Tahun, Sutradara, Genre, Durasi, Studio, Rating, Harga Tiket, serta Poster di PHP). Lebar tiap kolom tabel dihitung secara dinamis menyesuaikan panjang teks data terpanjang.
-3. **Menerima Input User (Add Saja):**
-   Program meminta masukan dari user mengenai berapa data film baru yang ingin ditambahkan. Jika lebih dari 0, program menerima masukan bertahap untuk mengisi seluruh field objek `FilmBioskop` baru dan menambahkannya ke dalam koleksi data.
-4. **Penampilan Tabel Akhir:**
-   Setelah proses input selesai, program kembali merender tabel dinamis lengkap yang telah terbarukan dengan seluruh data awal ditambah data yang baru saja diinputkan oleh user.
-5. **Dukungan Testcase (`file.txt`):**
-   Setiap folder bahasa memiliki berkas `file.txt` yang berisi data input uji otomatis yang dapat dialirkan via stdin/redirection (contoh: `./main < file.txt`).
+### 1. `Media` (Base Class)
+- `idMedia` : string (ID unik media)
+- `judul` : string (Judul film/media)
+- `tahunRilis` : int (Tahun rilis ke publik)
+
+### 2. `Film` (extends `Media`)
+- `sutradara` : string (Nama sutradara)
+- `genre` : string (Genre karya film)
+- `durasi` : int (Panjang film dalam satuan menit)
+
+### 3. `FilmBioskop` (extends `Film`)
+- `studioProduksi` : string (Rumah produksi / distributor film)
+- `ratingUsia` : string (Klasifikasi batasan usia: SU, 13+, 17+, 21+)
+- `hargaTiket` : double (Harga tiket nonton reguler bioskop dalam Rupiah)
+- `gambar` : string (**Khusus PHP**, file poster film di folder `images/`)
 
 ---
 
-# Dokumentasi Eksekusi Program
+## 🏁 Alur Program
+1. **Inisialisasi Data Default**: Program secara otomatis memuat 5 data objek awal bioskop (Avengers: Endgame, Interstellar, Spider-Man: No Way Home, Thor: Ragnarok, Oppenheimer).
+2. **Menu Interaktif**: Pengguna disajikan menu pilihan:
+   - `1. Tampilkan Daftar Film`: Menampilkan seluruh data dari ke-3 class di dalam satu tabel dinamis.
+   - `2. Tambah Film Bioskop Baru`: Menerima input data baru dari user dengan validasi ketat.
+   - `3. Keluar`: Mengakhiri program.
+3. **Tabel Dinamis**: Lebar tiap kolom tabel dihitung dinamis sesuai panjang karakter terpanjang data.
+4. **Otomatisasi Testcase**: Disediakan `file.txt` pada masing-masing bahasa untuk pengujian instan via input redirection (`< file.txt`).
+5. **Fitur Web PHP**: Pada PHP disediakan form input interaktif, upload file gambar poster ke direktori `images/`, dan tombol *Reset Data* untuk mengembalikan session ke 5 data default awal.
 
-## 1. C++ (CPP)
-Eksekusi program C++ menggunakan input testcase `file.txt`:
+---
+
+## 📷 Dokumentasi
+
+### C++
 <p align="center">
   <img src="Dokumentasi/cpp_output.png" alt="Eksekusi C++" width="100%">
 </p>
 
-## 2. Java
-Eksekusi program Java menggunakan input testcase `file.txt`:
+### Java
 <p align="center">
   <img src="Dokumentasi/java_output.png" alt="Eksekusi Java" width="100%">
 </p>
 
-## 3. Python
-Eksekusi program Python menggunakan input testcase `file.txt`:
+### Python
 <p align="center">
   <img src="Dokumentasi/python_output.png" alt="Eksekusi Python" width="100%">
 </p>
 
-## 4. PHP
-### Tampilan Web (Browser)
-- **Tampilan 5 Objek Awal & Form Tambah Data:**
+### PHP
+- **Tampilan Web 5 Data Awal:**
 <p align="center">
-  <img src="Dokumentasi/php_awal.png" alt="PHP Web Tampilan Awal" width="100%">
+  <img src="Dokumentasi/php_awal.png" alt="PHP Tampilan Awal" width="100%">
 </p>
 
-- **Tampilan Setelah User Menambah Data Baru:**
+- **Tampilan Web Setelah Tambah Data:**
 <p align="center">
-  <img src="Dokumentasi/php_tambah.png" alt="PHP Web Setelah Tambah Data" width="100%">
+  <img src="Dokumentasi/php_tambah.png" alt="PHP Tambah Data" width="100%">
 </p>
 
-### Mode CLI PHP
-Dapat dieksekusi langsung via terminal menggunakan `php index.php < file.txt`:
+- **Eksekusi Mode CLI PHP:**
 <p align="center">
   <img src="Dokumentasi/php_cli_output.png" alt="PHP CLI Output" width="100%">
 </p>
 
 ---
 
-# Cara Menjalankan Program
+## 🚀 Cara Menjalankan Program
 
 ### C++
 ```bash
 cd CPP
-g++ -std=c++11 main.cpp -o main
+g++ -std=c++11 Main.cpp -o main
 ./main < file.txt   # Menggunakan testcase otomatis
 # Atau jalankan interaktif:
 ./main
@@ -228,20 +189,20 @@ java Main
 ### Python
 ```bash
 cd Python
-python3 main.py < file.txt   # Menggunakan testcase otomatis
+python3 Main.py < file.txt   # Menggunakan testcase otomatis
 # Atau jalankan interaktif:
-python3 main.py
+python3 Main.py
 ```
 
 ### PHP
-- **Melalui Terminal (CLI):**
+- **Mode CLI (Terminal):**
   ```bash
   cd PHP
-  php index.php < file.txt
+  php Main.php < file.txt
   ```
-- **Melalui Browser (Web Server Lokal):**
+- **Mode Web (Browser):**
   ```bash
   cd PHP
   php -S localhost:8000
   ```
-  Buka browser dan akses `http://localhost:8000`.
+  Buka browser pada `http://localhost:8000`.

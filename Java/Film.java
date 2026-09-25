@@ -1,5 +1,5 @@
-// Subclass Level 1: Film
-// Mewarisi Media, menambahkan atribut spesifik karya film
+// Subclass Level 1: Film (mewarisi Media)
+// Menambahkan atribut spesifik karya perfilman
 public class Film extends Media {
     protected String sutradara;
     protected String genre;
@@ -13,36 +13,43 @@ public class Film extends Media {
         this.durasi = 0;
     }
 
-    // Constructor dengan parameter (memanggil super constructor)
-    public Film(String id, String judul, int tahunRilis,
+    // Constructor dengan parameter
+    public Film(String idMedia, String judul, int tahunRilis,
                 String sutradara, String genre, int durasi) {
-        super(id, judul, tahunRilis);
+        super(idMedia, judul, tahunRilis);
         this.sutradara = sutradara;
         this.genre = genre;
         this.durasi = durasi;
     }
 
-    // Getter & Setter untuk Sutradara
-    public String getSutradara() {
-        return sutradara;
-    }
+    // Setter
     public void setSutradara(String sutradara) {
         this.sutradara = sutradara;
-    }
-
-    // Getter & Setter untuk Genre
-    public String getGenre() {
-        return genre;
     }
     public void setGenre(String genre) {
         this.genre = genre;
     }
+    public void setDurasi(int durasi) {
+        this.durasi = durasi;
+    }
 
-    // Getter & Setter untuk Durasi
+    // Getter
+    public String getSutradara() {
+        return sutradara;
+    }
+    public String getGenre() {
+        return genre;
+    }
     public int getDurasi() {
         return durasi;
     }
-    public void setDurasi(int durasi) {
-        this.durasi = durasi;
+
+    // Prosedur menampilkan data
+    @Override
+    public void tampilkanData() {
+        super.tampilkanData();
+        System.out.println("Sutradara   : " + getSutradara());
+        System.out.println("Genre       : " + getGenre());
+        System.out.println("Durasi      : " + getDurasi() + " menit");
     }
 }
