@@ -99,23 +99,43 @@ classDiagram
 
 ---
 
-## ☕ Class & Atribut
+## ☕ Class, Atribut, & Methods
 
 ### 1. `Media` (Base Class)
-- `idMedia` : string (ID unik media)
-- `judul` : string (Judul film/media)
-- `tahunRilis` : int (Tahun rilis ke publik)
+- **Atribut:**
+  - `idMedia` : string (ID unik media)
+  - `judul` : string (Judul film/media)
+  - `tahunRilis` : int (Tahun rilis ke publik)
+- **Methods:**
+  - `getIdMedia()` / `setIdMedia(string)` : Mengambil dan mengubah ID media.
+  - `getJudul()` / `setJudul(string)` : Mengambil dan mengubah judul karya media.
+  - `getTahunRilis()` / `setTahunRilis(int)` : Mengambil dan mengubah tahun rilis media.
+  - `tampilkanData()` : Menampilkan ringkasan data entitas media ke konsol/layar.
 
 ### 2. `Film` (extends `Media`)
-- `sutradara` : string (Nama sutradara)
-- `genre` : string (Genre karya film)
-- `durasi` : int (Panjang film dalam satuan menit)
+- **Atribut:**
+  - `sutradara` : string (Nama sutradara film)
+  - `genre` : string (Genre karya perfilman)
+  - `durasi` : int (Panjang durasi film dalam satuan menit)
+- **Methods:**
+  - `getSutradara()` / `setSutradara(string)` : Mengambil dan mengubah nama sutradara.
+  - `getGenre()` / `setGenre(string)` : Mengambil dan mengubah genre film.
+  - `getDurasi()` / `setDurasi(int)` : Mengambil dan mengubah durasi film (menit).
+  - `tampilkanData()` : Menampilkan data film dengan terlebih dahulu memanggil `tampilkanData()` milik class parent `Media`.
 
 ### 3. `FilmBioskop` (extends `Film`)
-- `studioProduksi` : string (Rumah produksi / distributor film)
-- `ratingUsia` : string (Klasifikasi batasan usia: SU, 13+, 17+, 21+)
-- `hargaTiket` : double (Harga tiket nonton reguler bioskop dalam Rupiah)
-- `gambar` : string (**Khusus PHP**, file poster film di folder `images/`)
+- **Atribut:**
+  - `studioProduksi` : string (Rumah produksi / distributor penayangan bioskop)
+  - `ratingUsia` : string (Klasifikasi batasan usia penonton, misal: SU, 13+, 17+, 21+)
+  - `hargaTiket` : double (Harga tiket nonton reguler bioskop dalam Rupiah)
+  - `foto_produk` / `gambar` : string (**Khusus PHP**, path/nama file poster film di folder `images/`)
+- **Methods:**
+  - `getStudioProduksi()` / `setStudioProduksi(string)` : Mengambil dan mengubah studio produksi bioskop.
+  - `getRatingUsia()` / `setRatingUsia(string)` : Mengambil dan mengubah batas klasifikasi usia.
+  - `getHargaTiket()` / `setHargaTiket(double)` : Mengambil dan mengubah nominal harga tiket nonton.
+  - `getFotoProduk()` / `setFotoProduk(string)` (*khusus PHP*) : Mengambil dan mengubah nama file poster produk.
+  - `tampilkanData()` : Menampilkan seluruh data lengkap penayangan bioskop secara berjenjang melalui pemanggilan method parent.
+
 
 ---
 
