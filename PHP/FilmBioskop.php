@@ -7,7 +7,7 @@ class FilmBioskop extends Film {
     private string $studioProduksi;
     private string $ratingUsia;
     private float $hargaTiket;
-    private string $gambar; // Khusus bahasa PHP (path file poster film)
+    private string $foto_produk; // Khusus bahasa PHP (sesuai spesifikasi soal.txt)
 
     public function __construct(
         string $idMedia = "",
@@ -19,13 +19,13 @@ class FilmBioskop extends Film {
         string $studioProduksi = "",
         string $ratingUsia = "",
         float $hargaTiket = 0.0,
-        string $gambar = ""
+        string $foto_produk = ""
     ) {
         parent::__construct($idMedia, $judul, $tahunRilis, $sutradara, $genre, $durasi);
         $this->studioProduksi = $studioProduksi;
         $this->ratingUsia = $ratingUsia;
         $this->hargaTiket = $hargaTiket;
-        $this->gambar = $gambar;
+        $this->foto_produk = $foto_produk;
     }
 
     // Setter
@@ -38,8 +38,11 @@ class FilmBioskop extends Film {
     public function setHargaTiket(float $harga): void {
         $this->hargaTiket = $harga;
     }
+    public function setFotoProduk(string $foto_produk): void {
+        $this->foto_produk = $foto_produk;
+    }
     public function setGambar(string $gambar): void {
-        $this->gambar = $gambar;
+        $this->foto_produk = $gambar;
     }
 
     // Getter
@@ -52,8 +55,11 @@ class FilmBioskop extends Film {
     public function getHargaTiket(): float {
         return $this->hargaTiket;
     }
+    public function getFotoProduk(): string {
+        return $this->foto_produk;
+    }
     public function getGambar(): string {
-        return $this->gambar;
+        return $this->foto_produk;
     }
 
     // Prosedur menampilkan data
@@ -62,7 +68,7 @@ class FilmBioskop extends Film {
         echo "Studio      : " . $this->getStudioProduksi() . "<br>";
         echo "Rating Usia : " . $this->getRatingUsia() . "<br>";
         echo "Harga Tiket : Rp" . number_format($this->getHargaTiket(), 0, ',', '.') . "<br>";
-        echo "Gambar      : " . $this->getGambar() . "<br>";
+        echo "Foto Produk : " . $this->getFotoProduk() . "<br>";
     }
 }
 ?>
