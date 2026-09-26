@@ -67,7 +67,7 @@ TP2DPBO2526C1
 
 ---
 
-## ☕ Class, Atribut, & Methods
+## Class, Atribut, & Methods
 
 ### 1. `Media` (Base Class)
 - **Atribut:**
