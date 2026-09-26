@@ -12,9 +12,7 @@ function getInitialFilmList(): array {
     ];
 }
 
-// ==========================================
-// MODE CLI (jika dijalankan via terminal)
-// ==========================================
+// Terminal
 if (php_sapi_name() === 'cli') {
     $daftarFilm = getInitialFilmList();
 
@@ -117,9 +115,7 @@ if (php_sapi_name() === 'cli') {
     exit(0);
 }
 
-// ==========================================
-// MODE WEB (Browser)
-// ==========================================
+// WEB
 session_start();
 
 // Reset data SESSION
@@ -205,23 +201,23 @@ $daftarFilm = unserialize($_SESSION['daftarFilm']);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistem Bioskop - TP2 DPBO</title>
+    <title>Sistem Manajemen Film Bioskop</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Poppins', sans-serif; }
     </style>
 </head>
-<body class="bg-slate-900 text-slate-100 min-h-screen py-10 px-4 md:px-8">
+<body class="bg-slate-100 text-slate-800 min-h-screen py-10 px-4 md:px-8">
     <div class="max-w-7xl mx-auto">
         <!-- Header -->
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-center pb-6 mb-8 border-b border-slate-700 gap-4">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center pb-6 mb-8 border-b border-slate-200 gap-4">
             <div>
-                <h1 class="text-3xl font-bold text-sky-400">Sistem Manajemen Film Bioskop</h1>
-                <p class="text-slate-400 text-sm mt-1">Implementasi Multilevel Inheritance (Media &rarr; Film &rarr; FilmBioskop) - TP2 DPBO</p>
+                <h1 class="text-3xl font-bold text-slate-900">Sistem Manajemen Film Bioskop</h1>
+                <p class="text-xs text-slate-500 mt-1">Platform pendataan & katalog film bioskop</p>
             </div>
             <form method="POST" onsubmit="return confirm('Kembalikan ke 5 data default awal?');">
-                <button type="submit" name="reset_data" class="bg-rose-600 hover:bg-rose-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition">
+                <button type="submit" name="reset_data" class="bg-rose-600 hover:bg-rose-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-sm">
                     Reset ke 5 Data Awal
                 </button>
             </form>
@@ -229,85 +225,85 @@ $daftarFilm = unserialize($_SESSION['daftarFilm']);
 
         <!-- Alert -->
         <?php if (!empty($message)): ?>
-            <div class="p-4 mb-6 rounded-lg text-sm font-medium <?= $message_type === 'danger' ? 'bg-red-900/50 border border-red-500 text-red-200' : 'bg-emerald-900/50 border border-emerald-500 text-emerald-200' ?>">
+            <div class="p-4 mb-6 rounded-lg text-sm font-medium <?= $message_type === 'danger' ? 'bg-red-50 border border-red-200 text-red-700' : 'bg-emerald-50 border border-emerald-200 text-emerald-800' ?>">
                 <?= htmlspecialchars($message) ?>
             </div>
         <?php endif; ?>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10">
             <!-- Form Tambah Film -->
-            <div class="bg-slate-800 border border-slate-700 rounded-xl p-6 shadow-xl">
-                <h2 class="text-xl font-bold text-white mb-4 flex items-center justify-between">
+            <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+                <h2 class="text-xl font-bold text-slate-900 mb-4 flex items-center justify-between">
                     <span>Tambah Film Baru</span>
-                    <span class="text-xs bg-sky-500/20 text-sky-300 border border-sky-500 px-2 py-1 rounded">Input User</span>
+                    <span class="text-xs bg-sky-50 text-sky-700 border border-sky-200 px-2 py-1 rounded font-medium">Input User</span>
                 </h2>
                 <form method="POST" enctype="multipart/form-data" class="space-y-4">
                     <div class="grid grid-cols-2 gap-3">
                         <div>
-                            <label class="block text-xs font-medium text-slate-400 mb-1">ID Media</label>
-                            <input type="text" name="idMedia" required placeholder="FB006" class="w-full bg-slate-900 border border-slate-600 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-sky-400">
+                            <label class="block text-xs font-medium text-slate-600 mb-1">ID Media</label>
+                            <input type="text" name="idMedia" required placeholder="FB006" class="w-full bg-white border border-slate-300 rounded px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 transition">
                         </div>
                         <div>
-                            <label class="block text-xs font-medium text-slate-400 mb-1">Tahun Rilis</label>
-                            <input type="number" name="tahunRilis" required placeholder="2024" class="w-full bg-slate-900 border border-slate-600 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-sky-400">
+                            <label class="block text-xs font-medium text-slate-600 mb-1">Tahun Rilis</label>
+                            <input type="number" name="tahunRilis" required placeholder="2024" class="w-full bg-white border border-slate-300 rounded px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 transition">
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Judul Film</label>
-                        <input type="text" name="judul" required placeholder="Dune: Part Two" class="w-full bg-slate-900 border border-slate-600 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-sky-400">
+                        <label class="block text-xs font-medium text-slate-600 mb-1">Judul Film</label>
+                        <input type="text" name="judul" required placeholder="Dune: Part Two" class="w-full bg-white border border-slate-300 rounded px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 transition">
                     </div>
 
                     <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Sutradara</label>
-                        <input type="text" name="sutradara" required placeholder="Denis Villeneuve" class="w-full bg-slate-900 border border-slate-600 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-sky-400">
+                        <label class="block text-xs font-medium text-slate-600 mb-1">Sutradara</label>
+                        <input type="text" name="sutradara" required placeholder="Denis Villeneuve" class="w-full bg-white border border-slate-300 rounded px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 transition">
                     </div>
 
                     <div class="grid grid-cols-2 gap-3">
                         <div>
-                            <label class="block text-xs font-medium text-slate-400 mb-1">Genre</label>
-                            <input type="text" name="genre" required placeholder="Sci-Fi / Adventure" class="w-full bg-slate-900 border border-slate-600 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-sky-400">
+                            <label class="block text-xs font-medium text-slate-600 mb-1">Genre</label>
+                            <input type="text" name="genre" required placeholder="Sci-Fi / Adventure" class="w-full bg-white border border-slate-300 rounded px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 transition">
                         </div>
                         <div>
-                            <label class="block text-xs font-medium text-slate-400 mb-1">Durasi (Menit)</label>
-                            <input type="number" name="durasi" required placeholder="166" class="w-full bg-slate-900 border border-slate-600 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-sky-400">
+                            <label class="block text-xs font-medium text-slate-600 mb-1">Durasi (Menit)</label>
+                            <input type="number" name="durasi" required placeholder="166" class="w-full bg-white border border-slate-300 rounded px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 transition">
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Studio Produksi</label>
-                        <input type="text" name="studioProduksi" required placeholder="Warner Bros" class="w-full bg-slate-900 border border-slate-600 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-sky-400">
+                        <label class="block text-xs font-medium text-slate-600 mb-1">Studio Produksi</label>
+                        <input type="text" name="studioProduksi" required placeholder="Warner Bros" class="w-full bg-white border border-slate-300 rounded px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-sky-400 transition">
                     </div>
 
                     <div class="grid grid-cols-2 gap-3">
                         <div>
-                            <label class="block text-xs font-medium text-slate-400 mb-1">Rating Usia</label>
-                            <input type="text" name="ratingUsia" required placeholder="13+" class="w-full bg-slate-900 border border-slate-600 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-sky-400">
+                            <label class="block text-xs font-medium text-slate-600 mb-1">Rating Usia</label>
+                            <input type="text" name="ratingUsia" required placeholder="13+" class="w-full bg-white border border-slate-300 rounded px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-400 transition">
                         </div>
                         <div>
-                            <label class="block text-xs font-medium text-slate-400 mb-1">Harga Tiket (Rp)</label>
-                            <input type="number" name="hargaTiket" required placeholder="60000" class="w-full bg-slate-900 border border-slate-600 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-sky-400">
+                            <label class="block text-xs font-medium text-slate-600 mb-1">Harga Tiket (Rp)</label>
+                            <input type="number" name="hargaTiket" required placeholder="60000" class="w-full bg-white border border-slate-300 rounded px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-400 transition">
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Gambar Poster (Khusus PHP)</label>
-                        <input type="file" name="gambar" accept="image/*" class="w-full bg-slate-900 border border-slate-600 rounded px-3 py-2 text-xs text-slate-300">
+                        <label class="block text-xs font-medium text-slate-600 mb-1">Gambar Poster (Khusus PHP)</label>
+                        <input type="file" name="gambar" accept="image/*" class="w-full bg-slate-50 border border-slate-300 rounded px-3 py-2 text-xs text-slate-600 file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-sky-100 file:text-sky-700 hover:file:bg-sky-200">
                     </div>
 
-                    <button type="submit" name="tambah" class="w-full bg-sky-500 hover:bg-sky-600 text-slate-900 font-bold py-2.5 rounded-lg transition shadow-lg mt-2">
+                    <button type="submit" name="tambah" class="w-full bg-sky-600 hover:bg-sky-700 text-white font-bold py-2.5 rounded-lg transition shadow mt-2">
                         + Tambah Film
                     </button>
                 </form>
             </div>
 
             <!-- Tabel Data Film -->
-            <div class="lg:col-span-2 bg-slate-800 border border-slate-700 rounded-xl p-6 shadow-xl overflow-hidden flex flex-col justify-between">
+            <div class="lg:col-span-2 bg-white border border-slate-200 rounded-xl p-6 shadow-sm overflow-hidden flex flex-col justify-between">
                 <div>
-                    <h2 class="text-xl font-bold text-white mb-4">Daftar Film Bioskop</h2>
-                    <div class="overflow-x-auto rounded-lg border border-slate-700">
+                    <h2 class="text-xl font-bold text-slate-900 mb-4">Daftar Film Bioskop</h2>
+                    <div class="overflow-x-auto rounded-lg border border-slate-200">
                         <table class="w-full text-left text-xs border-collapse">
-                            <thead class="bg-slate-950 text-sky-400 border-b border-slate-700">
+                            <thead class="bg-slate-100 text-slate-700 border-b border-slate-200 font-semibold">
                                 <tr>
                                     <th class="p-3">ID</th>
                                     <th class="p-3">Poster</th>
@@ -321,28 +317,28 @@ $daftarFilm = unserialize($_SESSION['daftarFilm']);
                                     <th class="p-3">Harga</th>
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-slate-700/60">
+                            <tbody class="divide-y divide-slate-200">
                                 <?php foreach ($daftarFilm as $f): ?>
-                                    <tr class="hover:bg-slate-750 transition">
-                                        <td class="p-3 font-mono text-sky-300"><?= htmlspecialchars($f->getIdMedia()) ?></td>
+                                    <tr class="hover:bg-slate-50 transition">
+                                        <td class="p-3 font-mono font-medium text-sky-700"><?= htmlspecialchars($f->getIdMedia()) ?></td>
                                         <td class="p-3">
-                                            <img src="<?= htmlspecialchars($f->getGambar()) ?>" alt="<?= htmlspecialchars($f->getJudul()) ?>" class="w-10 h-14 object-cover rounded shadow border border-slate-600 bg-slate-900">
+                                            <img src="<?= htmlspecialchars($f->getGambar()) ?>" alt="<?= htmlspecialchars($f->getJudul()) ?>" class="w-10 h-14 object-cover rounded shadow-sm border border-slate-200 bg-slate-100">
                                         </td>
-                                        <td class="p-3 font-semibold text-white"><?= htmlspecialchars($f->getJudul()) ?></td>
-                                        <td class="p-3 text-slate-300"><?= htmlspecialchars($f->getTahunRilis()) ?></td>
-                                        <td class="p-3 text-slate-300"><?= htmlspecialchars($f->getSutradara()) ?></td>
-                                        <td class="p-3"><span class="bg-sky-900/60 text-sky-200 border border-sky-700 px-2 py-0.5 rounded text-[11px]"><?= htmlspecialchars($f->getGenre()) ?></span></td>
-                                        <td class="p-3 text-slate-300"><?= htmlspecialchars($f->getDurasi()) ?> menit</td>
-                                        <td class="p-3 text-slate-300"><?= htmlspecialchars($f->getStudioProduksi()) ?></td>
-                                        <td class="p-3"><span class="bg-slate-700 text-slate-200 px-2 py-0.5 rounded text-[11px]"><?= htmlspecialchars($f->getRatingUsia()) ?></span></td>
-                                        <td class="p-3 font-medium text-sky-400">Rp<?= number_format($f->getHargaTiket(), 0, ',', '.') ?></td>
+                                        <td class="p-3 font-semibold text-slate-900"><?= htmlspecialchars($f->getJudul()) ?></td>
+                                        <td class="p-3 text-slate-600"><?= htmlspecialchars($f->getTahunRilis()) ?></td>
+                                        <td class="p-3 text-slate-600"><?= htmlspecialchars($f->getSutradara()) ?></td>
+                                        <td class="p-3"><span class="bg-sky-50 text-sky-700 border border-sky-200 px-2 py-0.5 rounded text-[11px] font-medium"><?= htmlspecialchars($f->getGenre()) ?></span></td>
+                                        <td class="p-3 text-slate-600"><?= htmlspecialchars($f->getDurasi()) ?> menit</td>
+                                        <td class="p-3 text-slate-600"><?= htmlspecialchars($f->getStudioProduksi()) ?></td>
+                                        <td class="p-3"><span class="bg-slate-100 text-slate-700 border border-slate-200 px-2 py-0.5 rounded text-[11px] font-medium"><?= htmlspecialchars($f->getRatingUsia()) ?></span></td>
+                                        <td class="p-3 font-semibold text-sky-700">Rp<?= number_format($f->getHargaTiket(), 0, ',', '.') ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>
                 </div>
-                <div class="text-right text-xs text-slate-400 mt-4">
+                <div class="text-right text-xs text-slate-500 mt-4">
                     Menampilkan total <?= count($daftarFilm) ?> film bioskop.
                 </div>
             </div>

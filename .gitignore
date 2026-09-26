@@ -1,8 +1,0 @@
-# Build & compiled objects
-*.o
-*.class
-*.exe
-main
-run*
-__pycache__/
-*.pyc
